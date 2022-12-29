@@ -12,5 +12,4 @@ class Controller {
 
         include_once dirname(__DIR__) . "/views/$view.php"; 
     }
-
 }

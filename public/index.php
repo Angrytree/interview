@@ -8,12 +8,10 @@ spl_autoload_register(function ($class_name) {
     require_once  dirname(__DIR__) . '/' . $class_name . '.php';
 });
 
+require_once dirname(__DIR__) . '/routes/Routes.php';
+
 use core\Application;
-use controllers\HomeController;
 
 $application = new Application();
-
-$application->router->get('/', [HomeController::class, 'index']);
-//$application->router->get('/test', []);
 
 $application->run();
