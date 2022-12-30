@@ -16,7 +16,7 @@ class RegistrationController extends Controller {
     }
 
     public function index() {
-        $this->view('Header');
+        $this->view('Header', ['isRegPage' => true]);
         $this->view('Registration');
         $this->view('Footer');
     }

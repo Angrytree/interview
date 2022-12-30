@@ -16,7 +16,7 @@ class LoginController extends Controller {
     }
 
     public function index() {
-        $this->view('Header');
+        $this->view('Header', ['isLoginPage' => true]);
         $this->view('Login');
         $this->view('Footer');
     }

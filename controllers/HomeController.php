@@ -10,9 +10,9 @@ class HomeController extends Controller {
     }
 
     public function index() {
-        $this->view('Header');
+        $this->view('Header', ['auth' => true]);
         $this->view('Home');
-        $this->view('Header');
+        $this->view('Footer');
     }
 
 }
