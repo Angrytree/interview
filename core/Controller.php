@@ -4,7 +4,7 @@ namespace core;
 
 class Controller {
 
-    public function view($view, ?array $data) {
+    public function view($view, array $data = []) {
 
         foreach($data as $key => $value) {
             $$key = $value;

@@ -12,12 +12,14 @@ class Router {
         $this->_routes = self::$routes;
     }
 
-    public static function get($path, $callback) {
-        self::$routes['get'][$path] = $callback;
+    public static function get($path, $callback, $type = 'default') {
+        self::$routes['get'][$path]['callback'] = $callback;
+        self::$routes['get'][$path]['type'] = $type;
     }
 
-    public static function post($path, $callback) {
-        self::$routes['post'][$path] = $callback;
+    public static function post($path, $callback, $type = 'default') {
+        self::$routes['post'][$path]['callback'] = $callback;
+        self::$routes['post'][$path]['type'] = $type;
     }
 
     public function handle(Request $request, Response $response) {
@@ -29,10 +31,16 @@ class Router {
             return $this->view('404'); 
         }
 
-        $callback = $this->_routes[$request->getMethod()][$request->getPath()];
+        $type = $this->_routes[$request->getMethod()][$request->getPath()]['type'];
+
+        if($type == 'auth' && !Application::$instance->session->isAuth()){
+            $response->redirect('registration');
+        }
+
+        $callback = $this->_routes[$request->getMethod()][$request->getPath()]['callback'];
         $instance = new $callback[0];
         $callback[0] = $instance; 
-        call_user_func($callback, $request);
+        return call_user_func($callback, $request, $response);
     }
 
     public function view($view) {

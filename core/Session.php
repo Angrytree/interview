@@ -22,4 +22,8 @@ class Session {
         session_destroy();
     }
 
+    public function isAuth() {
+        return $this->user_id ?? false;
+    }
+
 }

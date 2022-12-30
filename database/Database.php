@@ -26,4 +26,8 @@ class Database {
         return $this->statement->fetchAll();
     }
 
+    public function insertId() {
+        return $this->pdo->lastInsertId();
+    }
+
 }

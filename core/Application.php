@@ -23,7 +23,7 @@ class Application {
     }
 
     public function run() {
-        $this->router->handle($this->request, $this->response);
+        echo $this->router->handle($this->request, $this->response);
     }
 
 }
