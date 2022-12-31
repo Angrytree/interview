@@ -48,4 +48,8 @@ class User extends Model {
         $this->session->close();
     }
 
+    public function isLogedIn() {
+        return $this->session->isAuth();
+    }
+
 }

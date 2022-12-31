@@ -15,7 +15,10 @@ class LoginController extends Controller {
         $this->user = new User();
     }
 
-    public function index() {
+    public function index(Request $request, Response $response) {
+        if($this->user->isLogedIn())
+            $response->redirect('home');
+
         $this->view('Header', ['isLoginPage' => true]);
         $this->view('Login');
         $this->view('Footer');

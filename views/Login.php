@@ -1,5 +1,5 @@
   <main class="px-3">
-    <form action="/login" method="POST">
+    <form class="login-form" action="/login" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">

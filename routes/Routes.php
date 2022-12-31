@@ -15,8 +15,7 @@ Router::post('/registration', [RegistrationController::class, 'register']);
 
 Router::get('/home', [HomeController::class, 'index'], 'auth');
 
-Router::get('/interview/create', [InterviewController::class, 'create'], 'auth');
-Router::post('/interview/create', [InterviewController::class, 'store'], 'auth');
-
-Router::get('/interview/edit', [InterviewController::class, 'show'], 'auth');
+Router::get('/interview/show', [InterviewController::class, 'show'], 'auth');
+Router::post('/interview/store', [InterviewController::class, 'store'], 'auth');
 Router::post('/interview/edit', [InterviewController::class, 'edit'], 'auth');
+Router::get('/interview/delete', [InterviewController::class, 'delete'], 'auth');

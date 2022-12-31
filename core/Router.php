@@ -34,7 +34,7 @@ class Router {
         $type = $this->_routes[$request->getMethod()][$request->getPath()]['type'];
 
         if($type == 'auth' && !Application::$instance->session->isAuth()){
-            $response->redirect('registration');
+            $response->redirect('');
         }
 
         $callback = $this->_routes[$request->getMethod()][$request->getPath()]['callback'];
