@@ -3,10 +3,10 @@
 <table class="table interview-table">
   <thead class="table-light">
     <tr class="text-start">
-      <th><a class="order-link" href="/home?order=id&order_type=asc">ID</a></th>
-      <th><a class="order-link" href="/home?order=question&order_type=asc">Question</a></th>
-      <th><a class="order-link" href="/home?order=status&order_type=asc">Status</a></th>
-      <th><a class="order-link" href="/home?order=date&order_type=asc">Date</a></th>
+      <th><a class="order-link" href="/home?order=id&order_type=<?=$order =='id' ? ($orderType == 'asc' ? 'desc' : 'asc') : 'asc' ;?>">ID</a></th>
+      <th><a class="order-link" href="/home?order=question&order_type=<?=$order =='question' ? ($orderType == 'asc' ? 'desc' : 'asc') : 'asc' ;?>">Question</a></th>
+      <th><a class="order-link" href="/home?order=status&order_type=<?=$order =='status' ? ($orderType == 'asc' ? 'desc' : 'asc') : 'asc' ;?>">Status</a></th>
+      <th><a class="order-link" href="/home?order=date&order_type=<?=$order =='date' ? ($orderType == 'asc' ? 'desc' : 'asc') : 'asc' ;?>">Date</a></th>
       <th><i class="bi bi-arrow-left-right"></i></th>
     </tr>
   </thead>

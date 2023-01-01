@@ -18,24 +18,12 @@ class HomeController extends Controller {
         $interviews = $this->interview->getUserInterviews($request);
         $statuses = $this->interview->getInterviewStatuses();
 
-        $orderType = $request->get('order_type');
-        if(in_array($orderType, $this->interview->orderTypeFields)){
-            if($orderType == $this->interview->orderTypeFields[0]){
-                $orderType = $this->interview->orderTypeFields[1];
-            }else{
-                $orderType = $this->interview->orderTypeFields[0];
-            }
-        }else{
-            $orderType = 'asc';
-        }
-
-
-
         $this->view('Header', ['auth' => true]);
         $this->view('Home', [
             'interviews' => $interviews,
             'statuses' => $statuses,
-            'orderType' => $orderType
+            'order' => $request->get('order'),
+            'orderType' => $request->get('order_type')
         ]);
         $this->view('Footer');
     }

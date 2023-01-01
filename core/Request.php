@@ -69,21 +69,21 @@ class Request {
         if(!$param)
             return $this->get;
         else
-            return $this->get[$param] ?? null;
+            return $this->get[$param] ?? false;
     }
 
     public function post($param='') {
         if(!$param)
             return $this->post;
         else
-            return $this->post[$param] ?? null;
+            return $this->post[$param] ?? false;
     }
 
     public function json($param='') {
         if(!$param)
             return $this->json;
         else
-            return $this->json[$param] ?? null;
+            return $this->json[$param] ?? false;
     }
 
 
