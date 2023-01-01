@@ -1,7 +1,7 @@
 <main class="px-3">
-<table class="table interview-table">
+<table class="table table-dark interview-table">
   <thead class="table-light">
-    <tr>
+    <tr class="text-start">
       <th>Question</th>
       <th>Status</th>
       <th>Date</th>
@@ -41,7 +41,7 @@
     </tr>
   </tbody>
   <thead class="table-light">
-    <tr>
+    <tr class="text-start">
       <th colspan="2">Answer</th>
       <th>Count</th>
       <th><i class="bi bi-arrow-left-right"></i></th>
@@ -49,19 +49,17 @@
   </thead>
   <tbody>
     <tr class="add-tr">
-			<td colspan="4">
-				<form class="row g-4 row-nm" action="/interview/answer/add" method="POST">
-					<div class="col-6">
-						<input type="text" class="form-control" placeholder="New answer">
-					</div>
-					<div class="col-3">
-						<input type="number" class="form-control" placeholder="0">
-					</div>
-					<div class="col-2 text-start">
-						<button type="submit" class="btn btn-primary add-answer"><i class="bi bi-plus"></i> Add</button>
-					</div>
-				</form>
-			</td>
+      <form hidden action="/interview/answer/store" method="POST" id="addAnswerForm"></form>
+      <td colspan="2">
+        <input type="hidden" name="interview_id" value="<?=$interview['id']?>" form="addAnswerForm">
+        <input type="text" class="form-control" placeholder="New answer" name="text" form="addAnswerForm">
+      </td>
+      <td>
+        <input type="number" class="form-control" placeholder="0" value="0" name="count" form="addAnswerForm">
+      </td>
+      <td class="text-start">
+        <button type="submit" class="btn btn-primary add-answer" form="addAnswerForm"><i class="bi bi-plus"></i> Add</button>
+      </td>
     </tr>
     <?php foreach($interview['answers'] as $answer):?>
     <tr class="text-start">
@@ -71,13 +69,27 @@
         <a class="showEditBlock" data-id="ans<?=$answer['id']?>">
           <i class="bi bi-pen action a-edit" title="Edit"></i>
         </a>
-        <a href="/answer/delete?id=<?=$answer['id']?>">
+        <a href="/interview/answer/delete?id=<?=$answer['id']?>&interview_id=<?=$interview['id']?>">
           <i class="bi bi-trash2-fill action a-delete" title="Delete"></i>
         </a>
       </td>
     </tr>
     <tr class="d-none edit-tr" id="editBlockans<?=$answer['id']?>">
-      <td colspan="4">hello ans</td>
+      <td colspan="4">
+        <form class="row g-4 row-nm" action="/interview/answer/edit" method="POST">
+          <input type="hidden" name="id" value="<?=$answer['id']?>">
+          <input type="hidden" name="interview_id" value="<?=$interview['id']?>">
+					<div class="col-6">
+						<input type="text" class="form-control" placeholder="Answer" name="text" value="<?=$answer['text']?>">
+					</div>
+					<div class="col-3">
+            <input type="number" class="form-control" placeholder="0" name="count" value="<?=$answer['count']?>">
+					</div>
+					<div class="col-2 text-start">
+						<button type="submit" class="btn btn-warning add-answer">Edit</button>
+					</div>
+				</form>
+      </td>
     </tr>
     <?php endforeach?>
   </tbody>

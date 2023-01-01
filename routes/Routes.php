@@ -1,5 +1,6 @@
 <?php
 
+use controllers\AnswerController;
 use core\Router;
 use controllers\LoginController;
 use controllers\RegistrationController;
@@ -19,3 +20,7 @@ Router::get('/interview/show', [InterviewController::class, 'show'], 'auth');
 Router::post('/interview/store', [InterviewController::class, 'store'], 'auth');
 Router::post('/interview/edit', [InterviewController::class, 'edit'], 'auth');
 Router::get('/interview/delete', [InterviewController::class, 'delete'], 'auth');
+
+Router::post('/interview/answer/store', [AnswerController::class, 'store'], 'auth');
+Router::post('/interview/answer/edit', [AnswerController::class, 'edit'], 'auth');
+Router::get('/interview/answer/delete', [AnswerController::class, 'delete'], 'auth');

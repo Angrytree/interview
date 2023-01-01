@@ -77,10 +77,15 @@ tbody > tr > td {
 	padding: 0 6px;
 }
 
-.interview-table .add-tr {
+.interview-table .add-tr td {
   background: #141414;
 }
 
 .interview-table .edit-tr {
   background: #5e5e5e;
+}
+
+a.order-link {
+  text-decoration: none;
+  color: #000;
 }

@@ -7,13 +7,37 @@ use core\Request;
 
 class Interview extends Model{
 
-    public function getUserInterviews() {
+    private Answer $answer;
+
+    private array $orderFields = [
+        'id' => 'id',
+        'status' => 'status_id',
+        'question' => 'question',
+        'date' => 'date'
+    ];
+
+    public array $orderTypeFields = ['asc', 'desc'];
+
+    public function __construct() {
+        parent::__construct();
+        $this->answer = new Answer();
+    }
+
+    public function getUserInterviews(Request $request) {
+        $order = $request->get('order');
+        $orderType = strtolower($request->get('order_type')); 
+        $orderQuery = "";
+        if(isset($this->orderFields[$order]) && in_array($orderType, $this->orderTypeFields)){
+            $orderQuery = "ORDER BY {$this->orderFields[$order]} $orderType";
+        }
+
         return $this->db
                 ->query("SELECT iv.*, ivs.name as status 
                         FROM interviews iv 
                         LEFT JOIN interview_status ivs 
                             ON iv.status_id = ivs.id  
-                        Where user_id={$this->session->user_id}")
+                        WHERE user_id={$this->session->user_id}
+                        $orderQuery")
                 ->result();
     }
 
@@ -33,7 +57,7 @@ class Interview extends Model{
         if(!count($interview))
             return false;
 
-        $answers = $this->db->query("SELECT * FROM answers WHERE interview_id = $id")->result();;
+        $answers = $this->answer->getAnswersByInterviewId($id);
         $interview[0]['answers'] = $answers;
 
         $interview = $interview[0];
