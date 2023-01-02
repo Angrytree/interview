@@ -55,7 +55,7 @@
         <input type="text" class="form-control" placeholder="New answer" name="text" form="addAnswerForm">
       </td>
       <td>
-        <input type="number" class="form-control" placeholder="0" value="0" name="count" form="addAnswerForm">
+        <input type="number" class="form-control" placeholder="0" name="count" form="addAnswerForm">
       </td>
       <td class="text-start">
         <button type="submit" class="btn btn-primary add-answer" form="addAnswerForm"><i class="bi bi-plus"></i> Add</button>

@@ -37,6 +37,10 @@ class Router {
             $response->redirect('');
         }
 
+        if($type == 'api' && !$request->isApi()){
+            return $response->json(['err' => 'Missing Api Token']);
+        }
+
         $callback = $this->_routes[$request->getMethod()][$request->getPath()]['callback'];
         $instance = new $callback[0];
         $callback[0] = $instance; 

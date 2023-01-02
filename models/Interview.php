@@ -118,4 +118,35 @@ class Interview extends Model{
 
         return true;
     }
+
+    /*
+    * Api methods
+    */
+
+    public function getRandomInterview(Request $request) {
+        $user = $this->db->query("SELECT id FROM users WHERE api_token = '{$request->getApiToken()}'")->result();
+        if(!count($user))
+            return [];
+
+        $interview = $this->db
+        ->query("SELECT iv.*, ivs.name as status 
+                FROM interviews iv 
+                LEFT JOIN interview_status ivs 
+                    ON iv.status_id = ivs.id
+                WHERE status_id = 2 AND user_id={$user[0]['id']}
+                ORDER BY RAND()
+                LIMIT 1")
+        ->result();
+
+        if(!count($interview))
+            return [];
+
+        $answers = $this->answer->getAnswersByInterviewId($interview[0]['id']);
+        $interview[0]['answers'] = $answers;
+
+        $interview = $interview[0];
+
+        return $interview;
+        
+    }
 }

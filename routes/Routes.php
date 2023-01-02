@@ -1,11 +1,12 @@
 <?php
 
-use controllers\AnswerController;
 use core\Router;
 use controllers\LoginController;
 use controllers\RegistrationController;
 use controllers\HomeController;
 use controllers\InterviewController;
+use controllers\AnswerController;
+use controllers\ApiController;
 
 Router::get('/', [LoginController::class, 'index']);
 Router::post('/login', [LoginController::class, 'login']);
@@ -24,3 +25,5 @@ Router::get('/interview/delete', [InterviewController::class, 'delete'], 'auth')
 Router::post('/interview/answer/store', [AnswerController::class, 'store'], 'auth');
 Router::post('/interview/answer/edit', [AnswerController::class, 'edit'], 'auth');
 Router::get('/interview/answer/delete', [AnswerController::class, 'delete'], 'auth');
+
+Router::post('/api/getRandomInterview',[ApiController::class, 'getRandomInterview'], 'api');

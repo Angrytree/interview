@@ -48,6 +48,10 @@ class Request {
         return $this->method;
     }
 
+    public function getApiToken() {
+        return $this->headers['APITOKEN'] ?? false;
+    }
+
     public function isGet() {
         return $this->method === 'get';
     }
@@ -62,6 +66,10 @@ class Request {
         }
         else
             return false;
+    }
+
+    public function isApi() {
+        return isset($this->headers['APITOKEN']);
     }
 
 

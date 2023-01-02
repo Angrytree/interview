@@ -24,8 +24,10 @@ class Answer extends Model{
         $text = $request->post('text');
         $count = $request->post('count');
 
-        if(!$text || !$count || !$interview_id)
+        if(!$text || !$interview_id)
             return false;
+
+        $count = $count ? $count : 0;
         
         $interview = $this->db->query("SELECT * FROM interviews 
                                         WHERE id = $interview_id 
