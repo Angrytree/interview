@@ -52,4 +52,10 @@ class User extends Model {
         return $this->session->isAuth();
     }
 
+    public function getApiToken() {
+        $api_token = $this->db->query("SELECT api_token FROM users WHERE id = {$this->session->user_id}")->result();
+
+        return $api_token[0]['api_token'];
+    }
+
 }

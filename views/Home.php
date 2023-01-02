@@ -1,5 +1,8 @@
 
 <main class="px-3">
+  <div class="text-start api-block">
+    <span class="btn btn-warning">API TOKEN</span> : <span><?=$api_token?></span>
+  </div>
 <table class="table interview-table">
   <thead class="table-light">
     <tr class="text-start">

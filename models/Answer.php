@@ -47,8 +47,10 @@ class Answer extends Model{
         $text = $request->post('text');
         $count = $request->post('count');
 
-        if(!$text || !$count || !$id || !$interview_id)
+        if(!$text || !$id || !$interview_id)
             return false;
+
+        $count = $count ? $count : 0;
         
         if(!$this->isAnswerOwner($id, $interview_id))
             return false;

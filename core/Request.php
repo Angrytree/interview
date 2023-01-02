@@ -49,7 +49,7 @@ class Request {
     }
 
     public function getApiToken() {
-        return $this->headers['APITOKEN'] ?? false;
+        return $this->headers['Apitoken'] ?? false;
     }
 
     public function isGet() {
@@ -69,7 +69,7 @@ class Request {
     }
 
     public function isApi() {
-        return isset($this->headers['APITOKEN']);
+        return isset($this->headers['Apitoken']);
     }
 
 
